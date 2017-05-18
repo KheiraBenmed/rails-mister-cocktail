@@ -1,0 +1,7 @@
+<h1><%= @ingredient.name %></h1>
+<h2>Voici la liste des cocktails qui contiennent cet ingrédient</h2>
+<ul>
+  <% @ingredients.cocktails.each do |coktail| %>
+  <li><%= cocktail.name %></li>
+  <% end %>
+</ul>
