@@ -1,4 +1,9 @@
-<h1 class="text-center">Your cocktail list</h1>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.1) 50%), url('<%= image_path('topbg.jpg')%>');">
+  <div class="banner-content">
+    <h1 class="text-center">Your cocktail list</h1>
+  </div>
+</div>
+
 
 <div class="text-center padded">
   <%= link_to "Create a cocktail", new_cocktail_path, class: "btn btn-primary" %>
@@ -8,21 +13,23 @@
   <div class="row">
     <% @cocktails.each do |cocktail| %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card text-center">
-
-
-          <% if cocktail.picture %>
-            <div class="card-header" style="background-image: url('<%= image_path cocktail.picture%>')">
-            </div>
-          <% else %>
-            <div class="card-header" style="background-image: url('http://www.seriouseats.com/images/2014/11/20141104-cocktail-party-old-fashioneds-holiday-vicky-wasik-3.jpg')">
-            </div>
-          <% end %>
-          <div class="card-body">
-            <%= link_to cocktail.name, cocktail_path(cocktail) %>
+        <!-- On récupère l'url de la photo -->
+        <% if cocktail.photo %>
+          <% url = cl_image_path cocktail.photo.path %>
+        <% else %>
+          <% url = "http://www.seriouseats.com/images/2014/11/20141104-cocktail-party-old-fashioneds-holiday-vicky-wasik-3.jpg" %>
+        <% end %>
+        <!-- On crée la card-->
+        <div class="card" style="background-image: url(<%= url %>)">
+          <div class="card-description">
+            <h2><%= cocktail.name %></h2>
           </div>
+          <%= link_to cocktail.name, cocktail_path(cocktail), class: 'card-link' %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+
+
